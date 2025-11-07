@@ -1,0 +1,27 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']  # 🔥 Имя контейнера, не localhost
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['node_exporter:9100']  # 🔥 Имя контейнера, не localhost
+
+  - job_name: 'custom_exporter'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+    scrape_interval: 20s
+
+  - job_name: 'mysql_exporter'
+    static_configs:
+      - targets: ['host.docker.internal:8001']
+    scrape_interval: 15s
+
+  - job_name: 'valorant_exporter'
+    static_configs:
+      - targets: ['host.docker.internal:8002']
+    scrape_interval: 15s
